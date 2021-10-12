@@ -1,0 +1,46 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "env": {
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "airbnb",
+        "eslint-config-prettier",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+    ],
+    "plugins": ["eslint-plugin-prettier"],
+    "rules": {
+        "prettier/prettier": "error",
+        "comma-dangle": ["error", "never"],
+        "arrow-parens": [2, "always"],
+        "function-paren-newline": "off",
+        "import/no-named-as-default": 0,
+        "import/no-named-as-default-member": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/prefer-default-export": 0,
+        "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+        "camelcase": 0,
+        "no-mixed-operators": 0,
+        "eqeqeq": 0,
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ]
+    }
+}

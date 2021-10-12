@@ -1,0 +1,5 @@
+{
+    "STAGE": "prod",
+    "MY_ENV_VAR": "###ENV_VAR###",
+    "MY_ENV_VAR_2": "###MY_ENV_VAR_2###"
+}

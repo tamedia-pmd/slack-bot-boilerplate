@@ -1,0 +1,45 @@
+{
+  "name": "slack-bot-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint '**/*.ts' --quiet",
+    "test": "jest --coverage",
+    "deploy-dev": "sls deploy -s dev",
+    "deploy-igr": "sls deploy -s igr",
+    "deploy-prod": "sls deploy -s prod",
+    "offline": "serverless offline start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamedia-pmd/slack-bot-boilerplate.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Lukas Schwab",
+    "email": "lukas.schwab@tx.group",
+    "url": "https://github.com/LukeZzzHD"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "jest": "^27.2.5",
+    "prettier": "^2.4.1",
+    "serverless": "^2.61.0",
+    "serverless-offline": "^8.2.0",
+    "serverless-plugin-warmup": "^6.0.0",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.3"
+  }
+}

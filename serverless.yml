@@ -1,0 +1,35 @@
+service: slack-bot-boilerplate
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-warmup
+
+package:
+  individually: true
+  include:
+    - node_modules
+    - dist
+
+provider:
+  name: aws
+  region: eu-central-1
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs12.x
+  timeout: 30
+  environment:
+    STAGE: ${file(./config/config.${opt:stage, self:provider.stage, 'dev'}.json):STAGE}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: '*'
+
+functions:
+  my-function:
+    warmup: true
+    timeout: 30
+    handler: dist/src/index.handler
+    events:
+      - http:
+          method: post
+          path: event
