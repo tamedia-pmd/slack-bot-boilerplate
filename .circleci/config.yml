@@ -31,6 +31,7 @@ jobs:
             - node_modules/
             - config/
             - dist/
+            - images/
             - package.json
   deploy:
     docker:
@@ -50,15 +51,15 @@ jobs:
           command: |
             chmod u+x ~/project/.circleci/helpers/setStageName.sh
             echo "export STAGE=`~/project/.circleci/helpers/setStageName.sh`" >> $BASH_ENV
+
       - run:
           name: Prepare deployment file
           command: |
             echo "deploying to $STAGE"
+
             chmod u+x ~/project/.circleci/helpers/setEnvironmentVariables.sh
+
             ./.circleci/helpers/setEnvironmentVariables.sh
-      - run:
-          name: Run tests
-          command: npm test
 
       - run:
           name: Deploy to AWS Lambda
@@ -66,16 +67,10 @@ jobs:
             if [ $STAGE == 'prod' ]
             then
               npm run deploy-prod
-            elif [ $STAGE == 'igr' ]
-            then
-              npm run deploy-igr
-            elif [ $STAGE == 'dev' ]
-            then
-              npm run deploy-dev
             else
-              echo "Invalid value for STAGE: $STAGE"
-              exit 1
+              npm run deploy
             fi
+
 workflows:
   version: 2
   staging-build:
@@ -84,7 +79,7 @@ workflows:
           name: build stage
           filters:
             branches:
-              only: /(^develop$|^integration$)/
+              only: /(^develop$)/
       - deploy:
           name: deploy stage
           requires:
@@ -97,7 +92,7 @@ workflows:
             tags:
               ignore: /(^v.*)/
             branches:
-              ignore: /(^develop$|^integration$)/
+              ignore: /(^develop$)/
   tagged-build:
     jobs:
       - build:
